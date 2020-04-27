@@ -82,9 +82,9 @@
     </ul>
     <div class="yph">yph</div>
     <!-- 比例容器 -->
-    <div class="aspectratio">
+    <!-- <div class="aspectratio">
         <div class="aspectratio-content"></div>
-    </div>
+    </div> -->
     <div aspectratio w-188-246 class="color"></div>
   </div>
 </template>
@@ -132,7 +132,7 @@ export default {
       height: 0;
   }
 
-  [aspectratio-content] {
+  /* [aspectratio-content] {
       position: absolute;
       top: 0;
       left: 0;
@@ -140,7 +140,7 @@ export default {
       bottom: 0;
       width: 100%;
       height: 100%;
-  }
+  } */
   [w-188-246] {
       width: 188px;
       background-color: red;
