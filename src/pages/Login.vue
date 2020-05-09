@@ -76,6 +76,7 @@ export default {
     display: flex;
     align-items: center;
     border-bottom: 1px solid gainsboro;
+    font-size: 40px;
 }
 .input1{
     margin-bottom: 50px;
