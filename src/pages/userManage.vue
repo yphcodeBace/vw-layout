@@ -9,21 +9,25 @@
         <div><van-icon name="user-o" /></div>
         <div>
             <div class="username">燕培浩</div>
-            <div class="zhiwei"><span>技术部</span> | <span>负责人</span></div>
+            <div class="zhiwei"><span>技术部</span> | <span>前端开发</span></div>
         </div>
         <div class="icon"><van-icon name="comment-o" /></div>
     </div>
     <div class="content">
         <div class="title">~ 优先任务 ~</div>
         <div class="t-box">
-            <van-cell>巡检任务</van-cell>
-            <van-cell class="daiban">维保任务</van-cell>
+            <van-cell><van-icon class="v-middle" name="location-o" />巡检任务<span class="infoTz">36</span></van-cell>
+            <van-cell class="daiban"><van-icon class="v-middle" name="like-o" />维保任务<span class="infoTz">16</span></van-cell>
         </div>
-        <van-cell is-link>待办事项</van-cell>
-        <van-cell is-link>历史记录</van-cell>
-        <van-cell is-link>任务抽查</van-cell>
-        <van-cell is-link>清除缓存</van-cell>
-        <van-cell is-link>账号设置</van-cell>
+        <van-cell is-link>
+            <van-icon class="v-middle" name="star-o" />
+            待办事项
+            <span class="infoTz">35</span>
+        </van-cell>
+        <van-cell is-link><van-icon class="v-middle" name="fire-o" />历史记录<span class="infoTz">6</span></van-cell>
+        <van-cell is-link><van-icon class="v-middle" name="gem-o" />任务抽查<span class="infoTz">16</span></van-cell>
+        <van-cell is-link><van-icon class="v-middle" name="underway-o" />清除缓存<span class="LJ">0MB</span></van-cell>
+        <van-cell is-link><van-icon class="v-middle" name="setting-o" />账号设置</van-cell>
         <div class="info">管理人员电话：17625931789</div>
         <div class="info">正常工作时间：9:00 - 18:00</div>
     </div>
@@ -31,7 +35,7 @@
 </template>
 
 <script>
-import { NavBar, Icon, Cell } from 'vant';
+import { NavBar, Icon, Cell, Sidebar } from 'vant';
 export default {
     components: {
         [NavBar.name]: NavBar,
@@ -152,7 +156,7 @@ export default {
 }
 .daiban{
     position: relative;
-    padding-left: 100px !important;
+    padding-left: 50px !important;
     /* border: 1px solid green; */
 }
 .daiban::after{
@@ -168,5 +172,27 @@ export default {
     margin: 30px 0;
     color: #A8A8A8;
     font-size: 30px;
+}
+.infoTz{
+    float: right;
+    padding: 0 10px;
+    margin-right: 20px;
+    line-height: 40px;
+    /* text-align: center; */
+    height: 40px;
+    color: white;
+    background: red;
+    border-radius: 45%;
+    margin-top: 30px;
+    font-size: 24px;
+}
+.LJ{
+    float: right;
+    /* margin-top: 30px; */
+    margin-right: 20px;
+}
+.v-middle{
+    vertical-align: middle;
+    margin-right: 10px;
 }
 </style>
