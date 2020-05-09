@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 引入echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+// 自动按需引入vant组件
+// babel-plugin-import 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式
 
 Vue.config.productionTip = false
 
