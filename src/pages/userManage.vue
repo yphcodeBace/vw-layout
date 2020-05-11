@@ -27,26 +27,74 @@
         <van-cell is-link><van-icon class="v-middle" name="fire-o" />历史记录<span class="infoTz">6</span></van-cell>
         <van-cell is-link><van-icon class="v-middle" name="gem-o" />任务抽查<span class="infoTz">16</span></van-cell>
         <van-cell is-link><van-icon class="v-middle" name="underway-o" />清除缓存<span class="LJ">0MB</span></van-cell>
-        <van-cell is-link><van-icon class="v-middle" name="setting-o" />账号设置</van-cell>
+        <van-cell is-link @click="showPopup"><van-icon class="v-middle" name="setting-o" />账号设置</van-cell>
         <div class="info">管理人员电话：17625931789</div>
         <div class="info">正常工作时间：9:00 - 18:00</div>
     </div>
+    <!-- 弹出层 -->
+    <van-popup class="popup" v-model="show" position="bottom" :style="{ height: '40%' }">
+        <van-cell>账号设置</van-cell>
+        <van-cell @click="editPass" class="operInfo">修改密码</van-cell>
+        <van-cell class="operInfo" @click="logOut">退出登录</van-cell>
+        <van-button @click="cancel" round type="info">退出</van-button>
+    </van-popup>
+    <!-- 修改密码弹出层 -->
+    <van-popup class="popup2" v-model="show2" position="bottom" :style="{ height: '40%' }">
+        <van-cell class="editPass">修改密码</van-cell>
+        <van-form @submit="onSubmit" :key="reset">
+        <van-field
+            v-model="ysPassword"
+            type="password"
+            name="ysPassword"
+            label="原始密码："
+            placeholder="原始密码"
+        />
+        <van-field
+            v-model="password"
+            type="password"
+            name="passWord"
+            label="最近密码："
+            placeholder="最近密码"
+        />
+        <van-field
+            v-model="conPassword"
+            type="password"
+            name="conPassWord"
+            label="确认密码："
+            placeholder="确认密码"
+        />
+        <div style="margin: 16px;">
+            <van-button round type="info" native-type="submit">
+            提交
+            </van-button>
+        </div>
+        </van-form>
+    </van-popup>
 </div>
 </template>
 
 <script>
-import { NavBar, Icon, Cell, Sidebar } from 'vant';
+import { NavBar, Icon, Cell, Sidebar, Popup, Button, Form, Field } from 'vant';
 export default {
     components: {
         [NavBar.name]: NavBar,
         [Icon.name]: Icon,
         [Cell.name]: Cell,
+        [Sidebar.name]: Sidebar,
+        [Popup.name]: Popup,
+        [Button.name]: Button,
+        [Form.name]: Form,
+        [Field.name]: Field,
     },
     name: "userManage",
     data() {
         return {
-            username: '',
+            ysPassword: '',
             password: '',
+            conPassword: '',
+            show: false,
+            show2: false,
+            reset: false,
         };
     },
     //页面加载调用获取cookie值
@@ -54,6 +102,25 @@ export default {
     methods: {
         onClickLeft() {
             console.log('返回');
+        },
+        showPopup() {
+            this.show = true;
+        },
+        logOut() {
+            this.$router.push('/Login');
+        },
+        cancel() {
+            this.show = false;
+        },
+        editPass() {
+            this.show2 = true;
+        },
+        onSubmit(values) {
+            console.log('submit', values);
+            this.show2 = false;
+            this.ysPassword = '';
+            this.password = '';
+            this.conPassword = '';
         },
     }
 }
@@ -142,6 +209,33 @@ export default {
     padding: 0 30px;
     font-size: 30px;
 }
+.popup, .popup2{
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+.popup .van-cell{
+    height: 120px;
+    line-height: 120px;
+    border-bottom: 1px solid #F2F2F2;
+    padding: 0 30px;
+    font-size: 30px;
+}
+.popup .van-cell__value--alone{
+    text-align: center;
+}
+.popup .van-button--normal{
+    height: 60px;
+    margin-top: 60px;
+    padding: 0px 50px;
+}
+.popup2 .van-button--normal{
+    height: 60px;
+    margin-top: 10px;
+    padding: 0px 50px;
+}
+.operInfo .van-cell__value{
+    color: #B5B5B5;
+}
 .content .van-cell__left-icon, .van-cell__right-icon{
     height: 100px;
     line-height: 100px;
@@ -194,5 +288,21 @@ export default {
 .v-middle{
     vertical-align: middle;
     margin-right: 10px;
+}
+/* 修改密码 */
+.editPass .van-cell__value{
+    text-align: center;
+    font-size: 30px;
+}
+.popup2 .van-cell{
+    /* border: 1px solid red; */
+    height: 100px;
+    line-height: 100px;
+}
+.popup2 .van-cell >>> .van-field__label{
+    /* border: 1px solid red; */
+    width: 180px;
+    font-size: 30px;
+    text-align: right;
 }
 </style>
